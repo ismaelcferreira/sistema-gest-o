@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestão de Tarefas - Meu Painel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho Principal -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-area">
+          <div class="logo-icon">📋</div>
+          <div>
+            <h1>Gestão de Tarefas</h1>
+            <p class="subtitle">Organize suas atividades, estudos e compromissos</p>
+          </div>
+        </div>
+        <div class="status-indicator">
+          <span class="live-dot"></span>
+          <span>Sistema Ativo</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Cards de Estatísticas / Resumo -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Total de Tarefas</span>
+          <span class="stat-value" id="stat-total">0</span>
+        </div>
+        <div class="stat-icon icon-total">📁</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Pendentes</span>
+          <span class="stat-value" id="stat-pendentes">0</span>
+        </div>
+        <div class="stat-icon icon-pending">⏳</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-info">
+          <span class="stat-label">Concluídas</span>
+          <span class="stat-value" id="stat-concluidas">0</span>
+        </div>
+        <div class="stat-icon icon-done">✅</div>
+      </div>
+    </section>
+
+    <!-- Layout Principal com Formulário e Lista -->
+    <main class="main-content">
+      <!-- Painel Esquerdo: Formulário de Cadastro -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>Nova Tarefa</h2>
+          <span class="badge-hint">Preencha os campos abaixo</span>
+        </div>
+
+        <form id="form-tarefa" class="task-form">
+          <div class="form-group">
+            <label for="titulo">Título da Tarefa <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="titulo" 
+              name="titulo" 
+              placeholder="Ex: Entregar trabalho de História" 
+              required
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="descricao">Descrição / Anotações</label>
+            <textarea 
+              id="descricao" 
+              name="descricao" 
+              rows="3" 
+              placeholder="Ex: Formatar em ABNT e enviar em PDF..."
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="categoria">Categoria</label>
+              <select id="categoria" name="categoria">
+                <option value="Estudo">📚 Estudo</option>
+                <option value="Escola">🏫 Escola</option>
+                <option value="Trabalho">💼 Trabalho</option>
+                <option value="Pessoal">👤 Pessoal</option>
+                <option value="Outros">📌 Outros</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="prioridade">Prioridade</label>
+              <select id="prioridade" name="prioridade">
+                <option value="Baixa">🟢 Baixa</option>
+                <option value="Média" selected>🟡 Média</option>
+                <option value="Alta">🔴 Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" id="btn-salvar" class="btn btn-primary">
+            <span>+</span> Adicionar Tarefa
+          </button>
+        </form>
+      </section>
+
+      <!-- Painel Direito: Listagem com Filtros -->
+      <section class="card list-card">
+        <div class="card-header list-header">
+          <div>
+            <h2>Minhas Tarefas</h2>
+            <p class="section-desc">Acompanhe e marque o que já foi finalizado</p>
+          </div>
+          <div class="filter-tabs">
+            <button class="tab-btn active" data-filtro="todos" id="tab-todos">Todas</button>
+            <button class="tab-btn" data-filtro="Pendente" id="tab-pendentes">Pendentes</button>
+            <button class="tab-btn" data-filtro="Concluída" id="tab-concluidas">Concluídas</button>
+          </div>
+        </div>
+
+        <!-- Container de Cards de Tarefas -->
+        <div id="lista-tarefas" class="tasks-container">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Carregando tarefas...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <p>Desenvolvido para fins educacionais • Projeto de Gestão de Tarefas (Full Stack)</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
